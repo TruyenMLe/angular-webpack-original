@@ -1,24 +1,31 @@
 import { NgModule }       from '@angular/core';
 import { BrowserModule }  from '@angular/platform-browser';
-import { RouterModule }   from '@angular/router';
+import { SnapModule } from 'snap';
+import { SnapLightboxService } from 'snap';
+import { ArFormBuilderModule } from 'form-builder';
+
 import { HeroService }         from './hero.service';
 import { AppComponent }        from './app.component';
 import { DashboardComponent } from './dashboard.component';
 import { AppRoutingModule } from './app-routing.module';
+import { NewRequestComponent } from './new-request/new-request.component';
 
 @NgModule({
     imports: [
         BrowserModule,
-        AppRoutingModule
+        AppRoutingModule,
+        SnapModule,
+        ArFormBuilderModule
     ],
     declarations: [
         AppComponent,
         DashboardComponent,
+        NewRequestComponent
     ],
     providers: [
-        HeroService
+        HeroService,
+        SnapLightboxService
     ],
     bootstrap: [ AppComponent ]
 })
-export class AppModule {
-}
+export class AppModule {}

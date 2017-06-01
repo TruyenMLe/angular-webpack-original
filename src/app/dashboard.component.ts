@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SnapLightboxService } from 'snap';
 
 import { Hero } from './hero';
 import { HeroService } from './hero.service';
@@ -13,11 +14,20 @@ export class DashboardComponent implements OnInit {
 
   heroes: Hero[] = [];
 
-  constructor(private heroService: HeroService) { }
+  testInputModel = {};
+
+  constructor(
+      private heroService: HeroService,
+      private snapLightboxService: SnapLightboxService
+  ) { }
 
   ngOnInit(): void {
     this.heroService.getHeroes()
       .then(heroes => this.heroes = heroes.slice(1, 5));
+  }
+
+  openNewRequestModal() {
+    this.snapLightboxService.open('new-request-modal');
   }
 }
 
