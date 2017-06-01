@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormService, FieldControlService, FieldService } from 'form-builder';
 
+import { REQUEST_FORM } from '../mock-request-forms';
+
 @Component({
     selector: 'new-request',
     templateUrl: './new-request.component.html'
@@ -22,24 +24,46 @@ export class NewRequestComponent implements OnInit {
     ) {}
 
     ngOnInit() {
+        this.callbackFunc = {
+            submit: () => {}
+        };
         this.getFormMetaData();
     }
 
+    getButtonClass(type) {
+        switch (type) {
+            case 'Primary': return 'primary-button';
+            case 'Secondary': return 'secondary-button';
+            case 'Cancel': return 'cancel-button';
+            case 'Tertiary': return 'tertiary-button';
+            default: return '';
+        }
+    }
+
     getFormMetaData() {
-        this.formService.getDynamicFormById(this.formId)
-            .then(
-                data => {
-                    this.existingForm = data;
+        this.existingForm = REQUEST_FORM;
 
-                    if (this.existingForm.formType === 'wizard') {
-                        this.currentStep = 1;
-                    }
+        if (this.existingForm.formType === 'wizard') {
+            this.currentStep = 1;
+        }
 
-                    this.generateButtonCallbacks(data.formButtons);
-                    this.generateCallbacks(data.formBody);
-                },
-                err => this.fields = []
-            );
+        this.generateButtonCallbacks(this.existingForm.formButtons);
+        this.generateCallbacks(this.existingForm.formBody);
+
+        // this.formService.getDynamicFormById(this.formId)
+        //     .then(
+        //         data => {
+        //             this.existingForm = data;
+        //
+        //             if (this.existingForm.formType === 'wizard') {
+        //                 this.currentStep = 1;
+        //             }
+        //
+        //             this.generateButtonCallbacks(data.formButtons);
+        //             this.generateCallbacks(data.formBody);
+        //         },
+        //         err => this.fields = []
+        //     );
     }
 
     /**
