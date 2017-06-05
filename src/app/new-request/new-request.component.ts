@@ -17,6 +17,7 @@ export class NewRequestComponent implements OnInit {
     form: any;
     submitted: boolean;
     customSteps: any[];
+    newRequest: any;
 
     constructor(
         private formService: FormService,
@@ -26,9 +27,15 @@ export class NewRequestComponent implements OnInit {
 
     ngOnInit() {
         this.callbackFunc = {
-            submit: () => {}
+            onSubmit: () => {
+                console.log('Dynamic form data: ');
+                console.log(this.form.value);
+                console.log('New request data: ');
+                console.log(this.newRequest);
+            }
         };
         this.customSteps = ['enter-parts-step'];
+        this.newRequest = {};
         this.getFormMetaData();
     }
 

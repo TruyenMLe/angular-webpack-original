@@ -13,7 +13,9 @@
     </dynamic-form-layout-view>
 
     <div class="enter-parts-step" [hidden]="currentStep !== (existingForm?.steps?.length + 1)">
-        <ar-enter-parts></ar-enter-parts>
+        <ar-enter-parts
+            [newRequest]="newRequest">
+        </ar-enter-parts>
     </div>
 
     <div class="clear-floats"></div>

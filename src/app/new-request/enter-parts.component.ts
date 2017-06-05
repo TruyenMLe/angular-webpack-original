@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
     selector: 'ar-enter-parts',
     templateUrl: './enter-parts.component.html'
 })
 export class EnterPartsComponent implements OnInit {
-    newRequest: any;
+    @Input() newRequest: any;
     filePath: any;
 
     constructor() {
-        this.newRequest = {};
         this.filePath = {};
     }
 
