@@ -1,0 +1,98 @@
+<!-- LEFT COLUMN -->
+<div class="col-xs-16 col-sm-8 padding-right-2x padding-left stacked-form">
+    <h4 class="text-dk-blue margin-bottom">Enter Parts</h4>
+    <ul>
+        <li class="height-auto">
+            <label id="partNumbers">
+                <input type="radio" name="partsRadio" id="partsRadioParts" [(ngModel)]="newRequest.partSelection" value="parts" />
+                I know my parts
+            </label>
+        </li>
+        <li class="height-auto">
+            <label id="partConfig">
+                <input type="radio" name="partsRadio" id="partsRadioFiles" [(ngModel)]="newRequest.partSelection" value="files" />
+                I want to upload a configuration
+            </label>
+        </li>
+        <li class="height-auto">
+            <label id="partMessage">
+                <input type="radio" name="partsRadio" id="partsRadioMessage" [(ngModel)]="newRequest.partSelection" value="message" />
+                I <em>don't</em> know my parts
+            </label>
+        </li>
+    </ul>
+</div>
+<!-- /LEFT COLUMN -->
+
+<!-- RIGHT COLUMN -->
+<div class="col-xs-16 col-sm-8 padding-right padding-left-2x padding-bottom-2x border-left">
+
+    <!-- PART NUMBERS -->
+    <div id="partNumbersInfo" *ngIf="newRequest?.partSelection === 'parts'" >
+        <h5 class="text-dk-blue margin-bottom-2x">Enter Part</h5>
+        <div class="stacked-form col-xs-8">
+            <label>Column Order</label>
+            <div class="drag-container">
+                <ul>
+                    <li>
+                        <span class="drag-handle margin-right-2x"></span>
+                        <small class="text-light text-size-50">1</small> Part Number
+                    </li>
+                    <li>
+                        <span class="drag-handle margin-right-2x"></span>
+                        <small class="text-light text-size-50">2</small> Quantity
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="stacked-form col-xs-8">
+            <fieldset>
+                <legend>Delimiter Type</legend>
+                <ul class="alternate-radios">
+                    <li><input type="radio" name="typeRadios" id="tabRadio" [(ngModel)]="newRequest.partDelimiter" value="tab" />
+                        <label for="tabRadio">Tab</label>
+                    </li>
+                    <li><input type="radio" name="typeRadios" id="commaRadio" [(ngModel)]="newRequest.partDelimiter" value="comma" />
+                        <label for="commaRadio"> , </label>
+                    </li>
+                    <li><input type="radio" name="typeRadios" id="pipeRadio" [(ngModel)]="newRequest.partDelimiter" value="pipe" />
+                        <label for="pipeRadio"> | </label>
+                    </li>
+                </ul>
+            </fieldset>
+        </div>
+        <textarea id="partNumbersField" name="partNumbersField" class="width-100-percent height-17em margin-top-2x" [(ngModel)]="newRequest.partList"></textarea>
+    </div>
+    <!-- /PART NUMBERS -->
+
+    <!-- PART CONFIGURATION -->
+    <div id="partConfigInfo"  *ngIf="newRequest?.partSelection === 'files'">
+        <h5 class="text-dk-blue margin-bottom-2x">Upload Configuration File</h5>
+
+        <div class="input-group clearfix margin-bottom-2x">
+            <input type="text" [(ngModel)]="filePath.src" id="configAttachmentName" name="configAttachmentName" title="Upload Configuration File" disabled="disabled">
+
+            <a href="javascript:void(0);">
+                <label class="group-button">
+                    Browse
+                    <input type="file" name="file" id="configAttachmentFile" [(ngModel)]="filePath.src" onchange="angular.element(this).scope().fileUploadConfig(this)" style="position:absolute; left:-9999px" multiple>
+                </label>
+            </a>
+        </div>
+
+        <h5 class="clear-floats margin-bottom" *ngIf="newRequest.configFileList?.length">Files</h5>
+        <ul class="item-list">
+            <li *ngFor="let item of newRequest.configFileList"><a href="javascript:;" class="margin-right"><span class="fa fa-times-circle" (click)="removeFile('config', item.id)"></span></a>{{item.name}}</li>
+        </ul>
+    </div>
+    <!-- UPLOAD CONFIGURATION -->
+
+    <!-- PART MESSAGE -->
+    <div id="partMessageInfo" *ngIf="newRequest?.partSelection === 'message'">
+        <h5 class="text-dk-blue margin-bottom-2x">Message</h5>
+        <textarea name="message" class="width-100-percent height-17em" [(ngModel)]="partsMessage"></textarea>
+    </div>
+    <!-- /PART MESSAGE -->
+
+</div>
+<!-- /RIGHT COLUMN -->

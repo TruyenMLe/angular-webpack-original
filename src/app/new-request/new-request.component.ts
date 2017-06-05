@@ -16,6 +16,7 @@ export class NewRequestComponent implements OnInit {
     callbackFunc: any;
     form: any;
     submitted: boolean;
+    customSteps: any[];
 
     constructor(
         private formService: FormService,
@@ -27,6 +28,7 @@ export class NewRequestComponent implements OnInit {
         this.callbackFunc = {
             submit: () => {}
         };
+        this.customSteps = ['enter-parts-step'];
         this.getFormMetaData();
     }
 
@@ -64,6 +66,20 @@ export class NewRequestComponent implements OnInit {
         //         },
         //         err => this.fields = []
         //     );
+    }
+
+    /**
+     * Go to previous page of create request modal
+     */
+    previousPage() {
+        this.currentStep = this.currentStep - 1;
+    }
+
+    /**
+     * Go to next page of create request modal
+     */
+    nextPage() {
+        this.currentStep = this.currentStep + 1;
     }
 
     /**

@@ -9,6 +9,7 @@ import { AppComponent }        from './app.component';
 import { DashboardComponent } from './dashboard.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NewRequestComponent } from './new-request/new-request.component';
+import { EnterPartsComponent } from './new-request/enter-parts.component';
 
 @NgModule({
     imports: [
@@ -20,7 +21,8 @@ import { NewRequestComponent } from './new-request/new-request.component';
     declarations: [
         AppComponent,
         DashboardComponent,
-        NewRequestComponent
+        NewRequestComponent,
+        EnterPartsComponent
     ],
     providers: [
         HeroService,
