@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SnapLightboxService } from 'snap';
 
-import { Hero } from './hero';
-import { HeroService } from './hero.service';
-
 @Component({
   selector: 'my-dashboard',
   templateUrl: './dashboard.component.html',
@@ -11,20 +8,9 @@ import { HeroService } from './hero.service';
 })
 
 export class DashboardComponent implements OnInit {
+  constructor(private snapLightboxService: SnapLightboxService) {}
 
-  heroes: Hero[] = [];
-
-  testInputModel = {};
-
-  constructor(
-      private heroService: HeroService,
-      private snapLightboxService: SnapLightboxService
-  ) { }
-
-  ngOnInit(): void {
-    this.heroService.getHeroes()
-      .then(heroes => this.heroes = heroes.slice(1, 5));
-  }
+  ngOnInit(): void {}
 
   openNewRequestModal() {
     this.snapLightboxService.open('new-request-modal');

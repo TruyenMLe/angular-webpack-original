@@ -4,7 +4,6 @@ import { SnapModule } from 'snap';
 import { SnapLightboxService } from 'snap';
 import { ArFormBuilderModule } from 'form-builder';
 
-import { HeroService }         from './hero.service';
 import { AppComponent }        from './app.component';
 import { DashboardComponent } from './dashboard.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -25,7 +24,6 @@ import { EnterPartsComponent } from './new-request/enter-parts.component';
         EnterPartsComponent
     ],
     providers: [
-        HeroService,
         SnapLightboxService
     ],
     bootstrap: [ AppComponent ]
