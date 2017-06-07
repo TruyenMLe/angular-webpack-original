@@ -15,5 +15,33 @@ export class EnterPartsComponent implements OnInit {
     /**
      * Lifecycle hook for when the component is initialized.
      */
-    ngOnInit() {}
+    ngOnInit() {
+        this.handleTabEvent();
+    }
+
+    /**
+     * Sets up a handler for the TAB key press in the textarea.
+     * @private
+     */
+    private handleTabEvent() {
+        let partNumbersField: any = document.getElementById('partNumbersField');
+
+        let keyHandler = (e: any) => {
+            // if TAB key is pressed...
+            if (e.keyCode === 9) {
+                partNumbersField.value += '\t';
+
+                if (e.preventDefault) {
+                    e.preventDefault();
+                }
+                return false;
+            }
+        };
+
+        if (partNumbersField.addEventListener) {
+            partNumbersField.addEventListener('keydown', keyHandler, false);
+        } else if (partNumbersField.attachEvent) {
+            partNumbersField.attachEvent('onkeydown', keyHandler);
+        }
+    }
 }

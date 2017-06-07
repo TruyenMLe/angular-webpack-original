@@ -3,19 +3,19 @@
     <h4 class="text-dk-blue margin-bottom">Enter Parts</h4>
     <ul>
         <li class="height-auto">
-            <label id="partNumbers">
+            <label id="partNumbers" for="partsRadioParts">
                 <input type="radio" name="partsRadio" id="partsRadioParts" [(ngModel)]="newRequest.partSelection" value="parts" />
                 I know my parts
             </label>
         </li>
         <li class="height-auto">
-            <label id="partConfig">
+            <label id="partConfig" for="partsRadioFiles">
                 <input type="radio" name="partsRadio" id="partsRadioFiles" [(ngModel)]="newRequest.partSelection" value="files" />
                 I want to upload a configuration
             </label>
         </li>
         <li class="height-auto">
-            <label id="partMessage">
+            <label id="partMessage" for="partsRadioMessage">
                 <input type="radio" name="partsRadio" id="partsRadioMessage" [(ngModel)]="newRequest.partSelection" value="message" />
                 I <em>don't</em> know my parts
             </label>
@@ -28,7 +28,7 @@
 <div class="col-xs-16 col-sm-8 padding-right padding-left-2x padding-bottom-2x border-left">
 
     <!-- PART NUMBERS -->
-    <div id="partNumbersInfo" *ngIf="newRequest?.partSelection === 'parts'" >
+    <div id="partNumbersInfo" [hidden]="newRequest?.partSelection !== 'parts'" >
         <h5 class="text-dk-blue margin-bottom-2x">Enter Part</h5>
         <div class="stacked-form col-xs-8">
             <label>Column Order</label>
@@ -49,13 +49,16 @@
             <fieldset>
                 <legend>Delimiter Type</legend>
                 <ul class="alternate-radios">
-                    <li><input type="radio" name="typeRadios" id="tabRadio" [(ngModel)]="newRequest.partDelimiter" value="tab" />
+                    <li>
+                        <input type="radio" name="typeRadios" id="tabRadio" [(ngModel)]="newRequest.partDelimiter" value="tab" />
                         <label for="tabRadio">Tab</label>
                     </li>
-                    <li><input type="radio" name="typeRadios" id="commaRadio" [(ngModel)]="newRequest.partDelimiter" value="comma" />
+                    <li>
+                        <input type="radio" name="typeRadios" id="commaRadio" [(ngModel)]="newRequest.partDelimiter" value="comma" />
                         <label for="commaRadio"> , </label>
                     </li>
-                    <li><input type="radio" name="typeRadios" id="pipeRadio" [(ngModel)]="newRequest.partDelimiter" value="pipe" />
+                    <li>
+                        <input type="radio" name="typeRadios" id="pipeRadio" [(ngModel)]="newRequest.partDelimiter" value="pipe" />
                         <label for="pipeRadio"> | </label>
                     </li>
                 </ul>
