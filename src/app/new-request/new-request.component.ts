@@ -93,6 +93,21 @@ export class NewRequestComponent implements OnInit {
     }
 
     /**
+     * Move step to specific one that has selected field
+     * @param form
+     * @param name
+     */
+    fieldFocus(form, name) {
+        let match = this.fields.filter((field) => {
+            return field.key === name;
+        });
+
+        if (match && match[0]) {
+            this.currentStep = match[0].step;
+        }
+    }
+
+    /**
      * Generate functions object for handling button callbacks
      * @param data
      */
