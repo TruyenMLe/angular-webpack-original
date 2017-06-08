@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "@ngtools/webpack": "1.2.4",
-    "@types/jasmine": "^2.5.35",
+    "@types/jasmine": "2.5.36",
     "@types/node": "^6.0.45",
     "angular-router-loader": "^0.5.0",
     "angular2-template-loader": "^0.6.0",
