@@ -18,6 +18,12 @@
         </ar-enter-parts>
     </div>
 
+    <div class="additional-attachement-step" [hidden]="currentStep !== (existingForm?.steps?.length + 2)">
+        <ar-additional-attachment
+            [newRequest]="newRequest">
+        </ar-additional-attachment>
+    </div>
+
     <div class="clear-floats"></div>
 
     <div class="button-row" *ngIf="customSteps?.length">

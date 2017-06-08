@@ -9,6 +9,7 @@ import { DashboardComponent } from './dashboard.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NewRequestComponent } from './new-request/new-request.component';
 import { EnterPartsComponent } from './new-request/enter-parts.component';
+import { AdditionalAttachmentComponent } from './new-request/additional-attachment.component';
 
 @NgModule({
     imports: [
@@ -21,7 +22,8 @@ import { EnterPartsComponent } from './new-request/enter-parts.component';
         AppComponent,
         DashboardComponent,
         NewRequestComponent,
-        EnterPartsComponent
+        EnterPartsComponent,
+        AdditionalAttachmentComponent
     ],
     providers: [
         SnapLightboxService

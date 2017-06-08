@@ -1,0 +1,32 @@
+<!-- LEFT COLUMN -->
+<div class="col-xs-16 col-sm-8 padding-right-2x padding-left stacked-form">
+    <!-- ATTACHMENTS -->
+    <h4 class="text-dk-blue margin-bottom padding-bottom-half">Additional Attachments</h4>
+
+    <div class="input-group clearfix margin-bottom-2x">
+        <input type="text" [(ngModel)]="filePath.src" id="addAttachmentName" name="addAttachmentName" disabled="disabled">
+
+        <a href="javascript:void(0);">
+            <label class="group-button">
+                Browse
+                <input type="file" name="file" id="addAttachmentFile" [(ngModel)]="filePath.src" onchange="angular.element(this).scope().fileUploadAdditional(this)" style="position:absolute; left:-9999px" multiple>
+            </label>
+        </a>
+    </div>
+
+    <h5 class="clear-floats margin-bottom" *ngIf="newRequest.additionalFileList.length">Files</h5>
+    <ul class="item-list">
+        <li *ngFor="let item of newRequest.additionalFileList"><a href="javascript:;" class="margin-right"><span class="fa fa-times-circle" (click)="removeFile('additional', item.id)"></span></a>{{item.name}}</li>
+    </ul>
+    <!-- /ATTACHMENTS -->
+</div>
+<!-- /LEFT COLUMN -->
+
+<!-- RIGHT COLUMN -->
+<div class="col-xs-16 col-sm-8 padding-right padding-left-2x padding-bottom-2x border-left">
+    <!-- NOTES -->
+    <h4 class="text-dk-blue margin-bottom padding-bottom-half">Notes</h4>
+    <textarea name="notes" class="width-100-percent height-17em" [(ngModel)]="newRequest.notes" maxlength="4000"></textarea>
+    <!-- /NOTES -->
+</div>
+<!-- /RIGHT COLUMN -->

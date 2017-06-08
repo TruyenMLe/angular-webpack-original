@@ -44,8 +44,10 @@ export class NewRequestComponent implements OnInit {
                 console.log(this.newRequest);
             }
         };
-        this.customSteps = ['enter-parts-step'];
-        this.newRequest = {};
+        this.customSteps = ['enter-parts-step', 'additional-attachment-step'];
+        this.newRequest = {
+            additionalFileList: []
+        };
         this.getFormMetaData();
     }
 
