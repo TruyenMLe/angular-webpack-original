@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormService, FieldControlService, FieldService } from 'form-builder';
-
-import { REQUEST_FORM } from '../mock-request-forms';
+import { BroadcastService } from 'snap/src/snap/feedback/spinner/broadcaster.service';
+import { SnapLightboxService } from 'snap';
 
 @Component({
     selector: 'new-request',
@@ -20,14 +20,24 @@ export class NewRequestComponent implements OnInit {
     newRequest: any;
 
     constructor(
+        private broadcastService: BroadcastService,
         private formService: FormService,
         private fieldControlService: FieldControlService,
-        private fieldService: FieldService
+        private fieldService: FieldService,
+        private snapLightboxService: SnapLightboxService
     ) {}
 
     ngOnInit() {
         this.callbackFunc = {
             onSubmit: () => {
+                this.submitted = true;
+
+                this.broadcastService.broadcast('FORM_BUILDER::FORM_SUBMITTED', true);
+
+                if (this.form.valid) {
+                    this.snapLightboxService.close(this.modalId);
+                }
+
                 console.log('Dynamic form data: ');
                 console.log(this.form.value);
                 console.log('New request data: ');
@@ -50,29 +60,20 @@ export class NewRequestComponent implements OnInit {
     }
 
     getFormMetaData() {
-        this.existingForm = REQUEST_FORM;
+        this.formService.getDynamicFormById(this.formId)
+            .then(
+                data => {
+                    this.existingForm = data;
 
-        if (this.existingForm.formType === 'wizard') {
-            this.currentStep = 1;
-        }
+                    if (this.existingForm.formType === 'wizard') {
+                        this.currentStep = 1;
+                    }
 
-        this.generateButtonCallbacks(this.existingForm.formButtons);
-        this.generateCallbacks(this.existingForm.formBody);
-
-        // this.formService.getDynamicFormById(this.formId)
-        //     .then(
-        //         data => {
-        //             this.existingForm = data;
-        //
-        //             if (this.existingForm.formType === 'wizard') {
-        //                 this.currentStep = 1;
-        //             }
-        //
-        //             this.generateButtonCallbacks(data.formButtons);
-        //             this.generateCallbacks(data.formBody);
-        //         },
-        //         err => this.fields = []
-        //     );
+                    this.generateButtonCallbacks(data.formButtons);
+                    this.generateCallbacks(data.formBody);
+                },
+                err => this.fields = []
+            );
     }
 
     /**
